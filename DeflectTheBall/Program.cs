@@ -1,0 +1,200 @@
+﻿using System;
+using System.Diagnostics.SymbolStore;
+using System.Threading;
+
+namespace DeflectTheBall
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            const int BallStartPosX = 8;
+            const int BallStartPosY = 10;
+            const int BallVelocityX = 1;
+            const int BallVelocityY = 1;
+            const int GameWindowWidth = 40;
+            const int GameWindowHeight = 20;
+
+            Game game = new Game(BallStartPosX, BallStartPosY, BallVelocityX, BallVelocityY, GameWindowWidth, GameWindowHeight) ;
+            
+            game.CreateWindow();
+            //ball.CreateFrame();
+
+            while (! game.isGameOver)
+            {
+                game.Run();
+                //ball.Show();
+            }
+            /*
+            ConsoleKeyInfo cki = Console.ReadKey();
+            int i = 0;
+            Console.Write(cki.Key);*/
+            //while (Console.ReadKey().Key.ToString() != "Escape") { Console.WriteLine(i); i++; }
+
+
+
+
+        }
+    }
+
+    class Game
+    {
+        private int _ScreenWidth;
+        private int _ScreenHeight;
+
+        private int _x, _y;
+        private int _vx, _vy;
+
+        private int[] platformX = { 1, 2, 3 };
+        private int platformY;
+        private int platformVelocity = 0;
+
+        public bool isGameOver = false;
+
+        public Game(int x, int y, int vx, int vy, int ScreenWidth, int ScreenHeigth)
+        {
+            _x = x;
+            _y = y;
+            _vx = vx;
+            _vy = vy;
+            _ScreenWidth = ScreenWidth;
+            _ScreenHeight = ScreenHeigth;
+            platformY = ScreenHeigth - 2;
+        }
+
+        public void Run()
+        {
+            MoveBall();
+            //MovePlatformLeftRight();
+            MovePlatform();
+            DrawBall();
+            DrawPlatform();
+            Thread.Sleep(100);
+            EraseBall();
+            ErasePlatform();
+        }
+
+        private void MoveBall()
+        {
+            _x += _vx;
+            _y += _vy;
+            if (_x == _ScreenWidth || _x == 1) { _vx = -_vx; }
+            //if (Collision() || _y == 1) { _vy = -_vy; }
+            //if (_y == _ScreenHeight) { GameOver(); isGameOver = true; }
+            if (Collision() || _y == _ScreenHeight || _y == 1) { _vy = -_vy; }
+        }
+
+        public void CreateWindow()
+        {
+            Console.WindowHeight = _ScreenHeight + 2;
+            Console.WindowWidth = _ScreenWidth + 2;
+            Console.CursorVisible = false;
+            //CreatePlatform();
+            CreateFrame();
+        }
+
+        private void CreateFrame()
+        {
+            for (int i = 0; i < _ScreenWidth + 2; i++)
+            {
+                for (int j = 0; j < _ScreenHeight + 2; j++)
+                {
+                    if (i == 0 || j == 0 || i == _ScreenWidth + 1 || j == _ScreenHeight + 1)
+                    {
+                        Console.SetCursorPosition(i, j);
+                        Console.WriteLine("o");
+                    }
+                }
+            }
+        }
+
+        private void DrawBall()
+        {
+            Console.SetCursorPosition(_x, _y);
+            Console.WriteLine("*");
+        }
+
+        private void EraseBall()
+        {
+            Console.SetCursorPosition(_x, _y);
+            Console.WriteLine(" ");
+        }
+
+        private void DrawPlatform()
+        {
+            foreach (int value in platformX)
+            {
+                Console.SetCursorPosition(value, platformY);
+                Console.WriteLine("-");
+            }
+        }
+
+        private void ErasePlatform()
+        {
+            foreach (int value in platformX)
+            {
+                Console.SetCursorPosition(value, platformY);
+                Console.WriteLine(" ");
+            }
+        }
+
+        private void MovePlatformLeftRight()
+        {
+            platformX[0] += platformVelocity;
+            platformX[1] += platformVelocity;
+            platformX[2] += platformVelocity;
+
+            if (platformX[0] - 1 == 0) { platformVelocity = -platformVelocity; }
+            if (platformX[2] + 2 == _ScreenWidth + 1) { platformVelocity = -platformVelocity; }
+        }
+
+        private void MovePlatform()
+        {
+            /*
+            var UserInput = Console.ReadKey();
+            if (UserInput.Key.ToString() == "LeftArrow")
+                platformVelocity = -2;
+            else if (UserInput.Key.ToString() == "RightArrow")
+                platformVelocity = 2;
+            else
+                platformVelocity = 0; 
+            */
+
+            //var 
+            if (Console.KeyAvailable)
+            {
+                var UserInput = Console.ReadKey();
+                if (UserInput.Key.ToString() == "LeftArrow")
+                    platformVelocity = -2;
+                else if (UserInput.Key.ToString() == "RightArrow")
+                    platformVelocity = 2;
+            }
+            else
+                platformVelocity = 0;
+
+            platformX[0] += platformVelocity;            
+            platformX[1] += platformVelocity;            
+            platformX[2] += platformVelocity;
+        }
+        
+        private bool Collision()
+        {
+            if ((_x == platformX[0] || _x == platformX[1] || _x == platformX[2]) && _y + 1 == platformY)
+            { 
+                //Console.Beep();
+                return true; 
+            }    
+            else
+                return false;
+        }
+
+        private void GameOver()
+        {
+            string msg = "Game Over";
+            Console.Clear();
+            Console.SetCursorPosition((_ScreenWidth - msg.Length) / 2, _ScreenHeight / 2);
+            Console.WriteLine(msg);
+        }
+        
+    }
+}
