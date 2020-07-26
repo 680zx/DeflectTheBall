@@ -12,8 +12,8 @@ namespace DeflectTheBall
             const int BallStartPosY = 10;
             const int BallVelocityX = 1;
             const int BallVelocityY = 1;
-            const int GameWindowWidth = 40;
-            const int GameWindowHeight = 20;
+            const int GameWindowWidth = 59;
+            const int GameWindowHeight = 30;
 
             Game game = new Game(BallStartPosX, BallStartPosY, BallVelocityX, BallVelocityY, GameWindowWidth, GameWindowHeight) ;
             
@@ -25,14 +25,7 @@ namespace DeflectTheBall
                 game.Run();
                 //ball.Show();
             }
-            /*
-            ConsoleKeyInfo cki = Console.ReadKey();
-            int i = 0;
-            Console.Write(cki.Key);*/
-            //while (Console.ReadKey().Key.ToString() != "Escape") { Console.WriteLine(i); i++; }
-
-
-
+            Console.ReadKey();
 
         }
     }
@@ -51,6 +44,9 @@ namespace DeflectTheBall
 
         public bool isGameOver = false;
 
+        private int SpeedDif = 5;
+        private int MovesCounter = 0;
+
         public Game(int x, int y, int vx, int vy, int ScreenWidth, int ScreenHeigth)
         {
             _x = x;
@@ -61,17 +57,43 @@ namespace DeflectTheBall
             _ScreenHeight = ScreenHeigth;
             platformY = ScreenHeigth - 2;
         }
-
+        
         public void Run()
         {
+            /*
             MoveBall();
             //MovePlatformLeftRight();
             MovePlatform();
             DrawBall();
             DrawPlatform();
-            Thread.Sleep(100);
+            Thread.Sleep(10);
             EraseBall();
             ErasePlatform();
+            */
+
+            //MovesCounter is used to slow down the movement 
+            //of the ball in relation to the movement of the platform
+            if (MovesCounter == SpeedDif)
+            {
+                MoveBall();
+                MovePlatform();
+                DrawBall();
+                DrawPlatform();
+                Thread.Sleep(10);
+                EraseBall();
+                ErasePlatform();
+                MovesCounter = 0;
+            }
+            else
+            {
+                MovePlatform();
+                DrawBall();
+                DrawPlatform();
+                Thread.Sleep(10);
+                EraseBall();
+                ErasePlatform();
+                MovesCounter++;
+            }
         }
 
         private void MoveBall()
@@ -80,8 +102,8 @@ namespace DeflectTheBall
             _y += _vy;
             if (_x == _ScreenWidth || _x == 1) { _vx = -_vx; }
             //if (Collision() || _y == 1) { _vy = -_vy; }
-            //if (_y == _ScreenHeight) { GameOver(); isGameOver = true; }
-            if (Collision() || _y == _ScreenHeight || _y == 1) { _vy = -_vy; }
+            if (_y == _ScreenHeight) { GameOver(); isGameOver = true; }
+            if (Collision() || _y == 1) { _vy = -_vy; }
         }
 
         public void CreateWindow()
@@ -102,7 +124,7 @@ namespace DeflectTheBall
                     if (i == 0 || j == 0 || i == _ScreenWidth + 1 || j == _ScreenHeight + 1)
                     {
                         Console.SetCursorPosition(i, j);
-                        Console.WriteLine("o");
+                        Console.Write("o");
                     }
                 }
             }
@@ -150,23 +172,12 @@ namespace DeflectTheBall
 
         private void MovePlatform()
         {
-            /*
-            var UserInput = Console.ReadKey();
-            if (UserInput.Key.ToString() == "LeftArrow")
-                platformVelocity = -2;
-            else if (UserInput.Key.ToString() == "RightArrow")
-                platformVelocity = 2;
-            else
-                platformVelocity = 0; 
-            */
-
-            //var 
             if (Console.KeyAvailable)
             {
                 var UserInput = Console.ReadKey();
-                if (UserInput.Key.ToString() == "LeftArrow")
+                if (UserInput.Key.ToString() == "LeftArrow" && platformX[0] - 1 != 0)
                     platformVelocity = -2;
-                else if (UserInput.Key.ToString() == "RightArrow")
+                else if (UserInput.Key.ToString() == "RightArrow" && platformX[2] + 2 < _ScreenWidth + 1)
                     platformVelocity = 2;
             }
             else
@@ -194,7 +205,6 @@ namespace DeflectTheBall
             Console.Clear();
             Console.SetCursorPosition((_ScreenWidth - msg.Length) / 2, _ScreenHeight / 2);
             Console.WriteLine(msg);
-        }
-        
+        }  
     }
 }
