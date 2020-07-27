@@ -10,21 +10,8 @@ namespace DeflectTheBall
         private int platformY;
         private int platformVelocity = 0;
 
-        public int[] X
-        {
-            get
-            {
-                return platformX;
-            }
-        }
-
-        public int Y
-        {
-            get
-            {
-                return platformY;
-            }
-        }
+        public int[] X => platformX;
+        public int Y => platformY;
 
         public Platform()
         {

@@ -7,8 +7,10 @@ namespace DeflectTheBall
 {
     class Game
     {
-        private int SpeedDif = 5;
+        private int SpeedDif = 5; // than value is smaller - ball is faster
         private int MovesCounter = 0;
+
+        ConsoleKeyInfo UserChoice;
 
         Ball ball;
         Platform platform;
@@ -16,14 +18,22 @@ namespace DeflectTheBall
         public Game()
         {
             Window.ScreenWidth = 61;
-            Window.ScreenHeight = 30;
+            Window.ScreenHeight = 20;
             platform = new Platform();
             ball = new Ball(1, 1);
             Window.Create();
         }
 
-        public void Run()
-        {  
+        public void Menu()
+        {
+            Window.ShowMenu();
+            Console.SetCursorPosition(Window.ScreenWidth / 2 - 4, 12);
+            Console.Write("Your input: "); 
+            //UserChoice = Console.ReadKey();
+        }
+
+        private void Play()
+        {
             //MovesCounter is used to slow down the movement 
             //of the ball in relation to the movement of the platform
             if (MovesCounter == SpeedDif)
@@ -34,7 +44,7 @@ namespace DeflectTheBall
                 platform.Draw();
                 Thread.Sleep(10);
                 ball.Erase();
-                platform. Erase();
+                platform.Erase();
                 MovesCounter = 0;
             }
             else
@@ -48,13 +58,22 @@ namespace DeflectTheBall
                 MovesCounter++;
             }
         }
+
         
-        public bool Over()
+
+        public void Run()
+        {
+            //Menu();
+            Play();
+            
+        }
+        
+        public bool isOver()
         {
             if (ball.Y == Window.ScreenHeight)
             {
                 Window.GameOverScreen();
-                Console.ReadKey();
+                //Console.ReadKey();
                 return true;
             }              
             else

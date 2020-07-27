@@ -1,0 +1,13 @@
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\bin\Release\netcoreapp3.1\DeflectTheBall.exe
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\bin\Release\netcoreapp3.1\DeflectTheBall.deps.json
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\bin\Release\netcoreapp3.1\DeflectTheBall.runtimeconfig.json
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\bin\Release\netcoreapp3.1\DeflectTheBall.runtimeconfig.dev.json
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\bin\Release\netcoreapp3.1\DeflectTheBall.dll
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\bin\Release\netcoreapp3.1\DeflectTheBall.pdb
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\obj\Release\netcoreapp3.1\DeflectTheBall.csprojAssemblyReference.cache
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\obj\Release\netcoreapp3.1\DeflectTheBall.AssemblyInfoInputs.cache
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\obj\Release\netcoreapp3.1\DeflectTheBall.AssemblyInfo.cs
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\obj\Release\netcoreapp3.1\DeflectTheBall.csproj.CoreCompileInputs.cache
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\obj\Release\netcoreapp3.1\DeflectTheBall.dll
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\obj\Release\netcoreapp3.1\DeflectTheBall.pdb
+C:\Users\tvrbofx\source\repos\DeflectTheBall\DeflectTheBall\obj\Release\netcoreapp3.1\DeflectTheBall.genruntimeconfig.cache

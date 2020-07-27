@@ -15,6 +15,23 @@ namespace DeflectTheBall
             Console.CursorVisible = false;
             CreateFrame();
         }
+        public static void GameOverScreen()
+        {
+            string msg = "Game Over";
+            Console.Clear();
+            Console.SetCursorPosition((ScreenWidth - msg.Length) / 2, ScreenHeight / 2);
+            Console.WriteLine(msg);
+        }
+
+        public static void ShowMenu()
+        {
+            Console.SetCursorPosition(ScreenWidth / 2 - 4, 2);
+            Console.Write("REFLECT THE BALL" +
+                "\n\n\tMenu:" +
+                "\n\t1) Play" +
+                "\n\t2) Scores" +
+                "\n\t3) Exit\n\n");
+        }
 
         private static void CreateFrame()
         {
@@ -31,12 +48,6 @@ namespace DeflectTheBall
             }
         }
 
-        public static void GameOverScreen()
-        {
-            string msg = "Game Over";
-            Console.Clear();
-            Console.SetCursorPosition((ScreenWidth - msg.Length) / 2, ScreenHeight / 2);
-            Console.WriteLine(msg);
-        }
+        
     }
 }
