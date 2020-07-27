@@ -15,7 +15,7 @@ namespace DeflectTheBall
             const int GameWindowWidth = 59;
             const int GameWindowHeight = 30;
 
-            Game game = new Game(BallStartPosX, BallStartPosY, BallVelocityX, BallVelocityY, GameWindowWidth, GameWindowHeight) ;
+            Game game = new Game(/*BallStartPosX, BallStartPosY,*/ BallVelocityX, BallVelocityY, GameWindowWidth, GameWindowHeight) ;
             
             game.CreateWindow();
             //ball.CreateFrame();
@@ -30,15 +30,19 @@ namespace DeflectTheBall
         }
     }
 
+
+    /*
     class Game
     {
+        Random rand = new Random();
+
         private int _ScreenWidth;
         private int _ScreenHeight;
 
         private int _x, _y;
         private int _vx, _vy;
 
-        private int[] platformX = { 1, 2, 3 };
+        private int[] platformX = new int[3];
         private int platformY;
         private int platformVelocity = 0;
 
@@ -47,20 +51,27 @@ namespace DeflectTheBall
         private int SpeedDif = 5;
         private int MovesCounter = 0;
 
+        
+
         public Game(int x, int y, int vx, int vy, int ScreenWidth, int ScreenHeigth)
         {
-            _x = x;
-            _y = y;
+            //_x = x;
+            //_y = y;
+            _x = rand.Next(1, ScreenWidth);
+            _y = rand.Next(1, 5);
             _vx = vx;
             _vy = vy;
             _ScreenWidth = ScreenWidth;
             _ScreenHeight = ScreenHeigth;
             platformY = ScreenHeigth - 2;
+            platformX[0] = ScreenWidth / 2 - 1;
+            platformX[1] = ScreenWidth / 2;
+            platformX[2] = ScreenWidth / 2 + 1;
         }
         
         public void Run()
         {
-            /*
+            
             MoveBall();
             //MovePlatformLeftRight();
             MovePlatform();
@@ -69,7 +80,7 @@ namespace DeflectTheBall
             Thread.Sleep(10);
             EraseBall();
             ErasePlatform();
-            */
+            
 
             //MovesCounter is used to slow down the movement 
             //of the ball in relation to the movement of the platform
@@ -96,16 +107,6 @@ namespace DeflectTheBall
             }
         }
 
-        private void MoveBall()
-        {
-            _x += _vx;
-            _y += _vy;
-            if (_x == _ScreenWidth || _x == 1) { _vx = -_vx; }
-            //if (Collision() || _y == 1) { _vy = -_vy; }
-            if (_y == _ScreenHeight) { GameOver(); isGameOver = true; }
-            if (Collision() || _y == 1) { _vy = -_vy; }
-        }
-
         public void CreateWindow()
         {
             Console.WindowHeight = _ScreenHeight + 2;
@@ -117,9 +118,9 @@ namespace DeflectTheBall
 
         private void CreateFrame()
         {
-            for (int i = 0; i < _ScreenWidth + 2; i++)
+            for (int i = 0; i <= _ScreenWidth + 1; i++)
             {
-                for (int j = 0; j < _ScreenHeight + 2; j++)
+                for (int j = 0; j <= _ScreenHeight + 1; j++)
                 {
                     if (i == 0 || j == 0 || i == _ScreenWidth + 1 || j == _ScreenHeight + 1)
                     {
@@ -128,6 +129,22 @@ namespace DeflectTheBall
                     }
                 }
             }
+        }
+
+        private void InitializeBallPosition()
+        {
+            _x = rand.Next(1, _ScreenWidth);
+            _y = rand.Next(1, 5);
+        }
+
+        private void MoveBall()
+        {
+            _x += _vx;
+            _y += _vy;
+            if (_x == _ScreenWidth || _x == 1) { _vx = -_vx; }
+            //if (Collision() || _y == 1) { _vy = -_vy; }
+            if (_y == _ScreenHeight) { GameOver(); isGameOver = true; }
+            if (Collision() || _y == 1) { _vy = -_vy; }
         }
 
         private void DrawBall()
@@ -190,7 +207,8 @@ namespace DeflectTheBall
         
         private bool Collision()
         {
-            if ((_x == platformX[0] || _x == platformX[1] || _x == platformX[2]) && _y + 1 == platformY)
+            //if ((_x == platformX[0] || _x == platformX[1] || _x == platformX[2]) && (_y + 1 == platformY || _y == platformY))
+            if ((_x == platformX[0] || _x == platformX[1] || _x == platformX[2]) && _y == platformY)
             { 
                 //Console.Beep();
                 return true; 
@@ -205,6 +223,9 @@ namespace DeflectTheBall
             Console.Clear();
             Console.SetCursorPosition((_ScreenWidth - msg.Length) / 2, _ScreenHeight / 2);
             Console.WriteLine(msg);
-        }  
+        } 
+
     }
+    */
+    
 }
