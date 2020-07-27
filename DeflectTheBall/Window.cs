@@ -4,19 +4,19 @@ using System.Text;
 
 namespace DeflectTheBall
 {
-    class Window
+    static class Window
     {
         public static int ScreenWidth, ScreenHeight;
-        public void CreateWindow()
+
+        public static void Create()
         {
             Console.WindowHeight = ScreenHeight + 2;
             Console.WindowWidth = ScreenWidth + 2;
             Console.CursorVisible = false;
-            //CreatePlatform();
             CreateFrame();
         }
 
-        private void CreateFrame()
+        private static void CreateFrame()
         {
             for (int i = 0; i <= ScreenWidth + 1; i++)
             {
@@ -31,7 +31,7 @@ namespace DeflectTheBall
             }
         }
 
-        private void GameOverScreen()
+        public static void GameOverScreen()
         {
             string msg = "Game Over";
             Console.Clear();

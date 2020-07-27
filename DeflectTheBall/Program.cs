@@ -14,8 +14,8 @@ namespace DeflectTheBall
             const int BallVelocityY = 1;
             const int GameWindowWidth = 59;
             const int GameWindowHeight = 30;
-
-            Game game = new Game(/*BallStartPosX, BallStartPosY,*/ BallVelocityX, BallVelocityY, GameWindowWidth, GameWindowHeight) ;
+            /*
+            Game game = new Game(/BallStartPosX, BallStartPosY,/ BallVelocityX, BallVelocityY, GameWindowWidth, GameWindowHeight) ;
             
             game.CreateWindow();
             //ball.CreateFrame();
@@ -26,7 +26,13 @@ namespace DeflectTheBall
                 //ball.Show();
             }
             Console.ReadKey();
+            */
 
+            Game game = new Game();
+            while(! game.Over())
+            {
+                game.Run();
+            }
         }
     }
 
@@ -53,7 +59,7 @@ namespace DeflectTheBall
 
         
 
-        public Game(int x, int y, int vx, int vy, int ScreenWidth, int ScreenHeigth)
+        public Game(/int x, int y,/ int vx, int vy, int ScreenWidth, int ScreenHeigth)
         {
             //_x = x;
             //_y = y;
@@ -71,7 +77,7 @@ namespace DeflectTheBall
         
         public void Run()
         {
-            
+            /
             MoveBall();
             //MovePlatformLeftRight();
             MovePlatform();
@@ -80,7 +86,7 @@ namespace DeflectTheBall
             Thread.Sleep(10);
             EraseBall();
             ErasePlatform();
-            
+            /
 
             //MovesCounter is used to slow down the movement 
             //of the ball in relation to the movement of the platform

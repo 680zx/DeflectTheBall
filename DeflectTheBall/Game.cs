@@ -7,35 +7,20 @@ namespace DeflectTheBall
 {
     class Game
     {
-        /*
-        public Game(/int x, int y,/ int vx, int vy, int ScreenWidth, int ScreenHeigth)
-        {
-            //_x = x;
-            //_y = y;
-            _x = rand.Next(1, ScreenWidth);
-            _y = rand.Next(1, 5);
-            _vx = vx;
-            _vy = vy;
-            _ScreenWidth = ScreenWidth;
-            _ScreenHeight = ScreenHeigth;
-            platformY = ScreenHeigth - 2;
-            platformX[0] = ScreenWidth / 2 - 1;
-            platformX[1] = ScreenWidth / 2;
-            platformX[2] = ScreenWidth / 2 + 1;
-        }
-        */
         private int SpeedDif = 5;
         private int MovesCounter = 0;
 
-        Ball ball = new Ball();
-        Platform platform = new Platform();
+        Ball ball;
+        Platform platform;
 
         public Game()
         {
-            Window.ScreenWidth = 60;
-            Window.ScreenHeight = 20;
+            Window.ScreenWidth = 61;
+            Window.ScreenHeight = 30;
+            platform = new Platform();
+            ball = new Ball(1, 1);
+            Window.Create();
         }
-
 
         public void Run()
         {  
@@ -43,7 +28,7 @@ namespace DeflectTheBall
             //of the ball in relation to the movement of the platform
             if (MovesCounter == SpeedDif)
             {
-                ball.Move();
+                ball.Move(platform.X, platform.Y);
                 platform.Move();
                 ball.Draw();
                 platform.Draw();
@@ -62,6 +47,18 @@ namespace DeflectTheBall
                 platform.Erase();
                 MovesCounter++;
             }
+        }
+        
+        public bool Over()
+        {
+            if (ball.Y == Window.ScreenHeight)
+            {
+                Window.GameOverScreen();
+                Console.ReadKey();
+                return true;
+            }              
+            else
+                return false;
         }
     }
 }

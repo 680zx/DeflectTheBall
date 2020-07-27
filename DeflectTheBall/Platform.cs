@@ -10,11 +10,28 @@ namespace DeflectTheBall
         private int platformY;
         private int platformVelocity = 0;
 
+        public int[] X
+        {
+            get
+            {
+                return platformX;
+            }
+        }
+
+        public int Y
+        {
+            get
+            {
+                return platformY;
+            }
+        }
+
         public Platform()
         {
-            platformX[0] = Window.ScreenWidth - 1;
-            platformX[1] = Window.ScreenWidth;
-            platformX[2] = Window.ScreenWidth + 1;
+            platformY = (Window.ScreenHeight) - 2;
+            platformX[0] = Window.ScreenWidth / 2 - 1;
+            platformX[1] = Window.ScreenWidth / 2;
+            platformX[2] = Window.ScreenWidth / 2 + 1;
         }
 
         public void Draw()
