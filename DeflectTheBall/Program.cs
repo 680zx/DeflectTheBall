@@ -9,9 +9,9 @@ namespace DeflectTheBall
 
         static void Main(string[] args)
         {
-
+            Console.CursorVisible = false;
             //game.Run();
-            Window.ScreenHeight = 40;
+            Window.ScreenHeight = 20;
             Window.ScreenWidth = 41;
             
             bool isContinue = true;
@@ -27,40 +27,20 @@ namespace DeflectTheBall
                         Game game = new Game();
                         game.Run();
                         break;
+
                     case "D2":
                         //Console.WriteLine("scores");
                         Window.ScoresScreen();
                         break;
+
                     case "D3":
                         isContinue = false;
                         break;
+
                     default:
                         break;
                 }
-                //
             }
-            /*
-            Window.ScreenHeight = 30;
-            Window.ScreenWidth = 61;
-            Window.ShowMenu();
-            while (Console.ReadKey().Key.ToString() != "D3")
-            {
-                Console.Clear();
-                
-                //Window.ShowMenu();
-                //Thread.Sleep(100);
-                while (!game.isOver())
-                {
-                    game.Run();
-                }
-                Thread.Sleep(500);
-                Console.Clear();
-                Window.ShowMenu();
-            
-            }
-            */
-
-            //Console.WriteLine(Console.ReadKey().Key.ToString());
         }
     }
 }

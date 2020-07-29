@@ -11,7 +11,7 @@ namespace DeflectTheBall
         private int _x, _y;
         private int _vx, _vy;
 
-        public static int BounceCounter;
+        public static int ScoreCounter;
 
         public int Y
         {
@@ -34,13 +34,34 @@ namespace DeflectTheBall
             _y = rand.Next(1, 5);
         }
 
-        public void Move(int[] platX, int platY)
+        public void Move(int[] platX, int platY, Block block)
         {
             _x += _vx;
             _y += _vy;
             if (_x == Window.ScreenWidth || _x == 1) { _vx = -_vx; }
             //if (_y == Window.ScreenHeight || _y == 1) { _vy = -_vy; }
-            if (Collision(platX, platY) || _y == 1) { _vy = -_vy; }
+            if (CollisionPlatform(platX, platY) || _y == 1 || CollisionBlock(block)) { _vy = -_vy; }
+        }
+        private bool CollisionPlatform(int[] xCoord, int yCoord)
+        {
+            if ((_x == xCoord[0] || _x == xCoord[1] || _x == xCoord[2]) && _y == yCoord)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        private bool CollisionBlock(Block block)
+        {
+            if ((_x == block.X[0] || _x == block.X[1] || _x == block.X[2]) && _y == block.Y)
+            {
+                block.Destroy();
+                ScoreCounter++;
+                //Console.Beep();
+                return true;
+            }
+            else
+                return false;
         }
 
         public void Draw()
@@ -55,16 +76,5 @@ namespace DeflectTheBall
             Console.WriteLine(" ");
         }
 
-        public bool Collision(int[] platformX, int platformY)
-        {
-            if ((_x == platformX[0] || _x == platformX[1] || _x == platformX[2]) && _y == platformY)
-            {
-                BounceCounter++;
-                //Console.Beep();
-                return true;
-            }
-            else
-                return false;
-        }
     }
 }

@@ -18,9 +18,10 @@ namespace DeflectTheBall
                 "\n\t1) Play" +
                 "\n\t2) Scores" +
                 "\n\t3) Exit\n\n");
-            Create();
+            CreateScreen();
         }
-        public static void GameScreen()
+
+        public static void GameplayScreen()
         {
             CreateFrame();
         }
@@ -28,7 +29,7 @@ namespace DeflectTheBall
         public static void ScoresScreen()
         {
             Console.Clear();
-            Create();
+            //CreateScreen();
             Console.SetCursorPosition(ScreenWidth / 2 - 4, 2);
 
             do
@@ -37,7 +38,7 @@ namespace DeflectTheBall
                 "\n\t1) Player1\t100" +
                 "\n\t2) Player2\t 89" +
                 "\n\n\tTo exit press Escape");
-                Create();
+                CreateScreen();
             }
             while (Console.ReadKey().Key.ToString() != "Escape");
             
@@ -53,11 +54,10 @@ namespace DeflectTheBall
             
         }
 
-        private static void Create()
+        private static void CreateScreen()
         {
             Console.WindowHeight = ScreenHeight + 2;
             Console.WindowWidth = ScreenWidth + 2;
-            Console.CursorVisible = false;
             CreateFrame();
         }
 
