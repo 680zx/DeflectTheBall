@@ -11,6 +11,8 @@ namespace DeflectTheBall
         private int _x, _y;
         private int _vx, _vy;
 
+        public static int BounceCounter;
+
         public int Y
         {
             get
@@ -57,6 +59,7 @@ namespace DeflectTheBall
         {
             if ((_x == platformX[0] || _x == platformX[1] || _x == platformX[2]) && _y == platformY)
             {
+                BounceCounter++;
                 //Console.Beep();
                 return true;
             }
