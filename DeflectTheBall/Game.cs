@@ -7,7 +7,7 @@ namespace DeflectTheBall
 {
     class Game
     {
-        private int SpeedDif = 2; // the smaller the value - the ball is faster
+        private static int SpeedDif = 3; // the smaller the value - the ball is faster
         private int MovesCounter = 0;
 
         Ball ball;
@@ -51,10 +51,9 @@ namespace DeflectTheBall
         {       
             while (!isOver())
             {
-                
                 //MovesCounter is used to slow down the movement
                 //of the ball in relation to the movement of the platform
-                if (MovesCounter == SpeedDif)
+                if (MovesCounter == Game.SpeedDif)
                 {
 
                     ball.Move(platform, blocks);
@@ -80,12 +79,24 @@ namespace DeflectTheBall
                 Console.Write(Ball.ScoreCounter);
             }
             Thread.Sleep(1000);
-
         }
 
-        public static int GetDifficultyLevel()
+        public static void SetDifficultyLevel(string gameLevel)
         {
-            return 1;
+            switch (gameLevel)
+            {
+                case "D1":
+                    SpeedDif = 5;
+                    break;
+                case "D2":
+                    SpeedDif = 3;
+                    break;
+                case "D3":
+                    SpeedDif = 1;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private bool isOver()

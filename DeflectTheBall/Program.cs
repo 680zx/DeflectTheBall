@@ -40,6 +40,7 @@ namespace DeflectTheBall
 
                     case "D4":
                         Window.SettingsScreen();
+                        Game.SetDifficultyLevel(Console.ReadKey().Key.ToString());
                         break;
                     
                     case "D5":

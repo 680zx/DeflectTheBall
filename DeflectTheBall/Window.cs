@@ -52,7 +52,7 @@ namespace DeflectTheBall
             {
                 Console.Write("HELP" +
                 "\n\tUse Left Arrow and Right Arrow" +
-                "\n\tbuttonsto control the position " +
+                "\n\tbuttons to control the position " +
                 "\n\tof the platform" +
                 "\n\n\tTo exit press Escape");
                 CreateScreen();
@@ -65,17 +65,13 @@ namespace DeflectTheBall
             Console.Clear();
             Console.SetCursorPosition(Width / 2 - 6, 2);
 
-            do
-            {
-                Console.Write("HELP" +
-                "\n\tTo choose difficulty, press" +
-                "\n\tkey 1 - easy level" +
-                "\n\tkey 2 - medium level" +
-                "\n\tkey 3 - hard level" +
-                "\n\n\tTo exit press Escape");
-                CreateScreen();
-            }
-            while (Console.ReadKey().Key.ToString() != "Escape");
+            Console.Write("SETTINGS" +
+            "\n\tTo choose difficulty, press" +
+            "\n\tkey 1 - easy level" +
+            "\n\tkey 2 - medium level" +
+            "\n\tkey 3 - hard level");
+            CreateScreen();
+           
         }
         public static void GameOverScreen()
         {
@@ -92,8 +88,6 @@ namespace DeflectTheBall
             Console.SetCursorPosition((Width - msg.Length) / 2, Height / 2);
             Console.WriteLine(msg);
         }
-
-        
 
         private static void CreateScreen()
         {
