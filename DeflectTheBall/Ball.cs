@@ -24,12 +24,12 @@ namespace DeflectTheBall
         
         public Ball(int vx, int vy)
         {
-            InitializePosition();
+            InitializeStartPosition();
             _vx = vx;
             _vy = vy;
         }
 
-        private void InitializePosition()
+        private void InitializeStartPosition()
         {
             _x = rand.Next(1, Window.Width - 2);
             _y = rand.Next(5, 8);
@@ -40,9 +40,9 @@ namespace DeflectTheBall
             _x += _vx;
             _y += _vy;
             if (_x == Window.Width - 2 || _x == 1) { _vx = -_vx; }
-            //if (_y == Window.ScreenHeight || _y == 1) { _vy = -_vy; }
             if (CollisionPlatform(platform) || _y == 1 || CollisionBlock(blocks)) { _vy = -_vy; }
         }
+
         private bool CollisionPlatform(Platform platfrom)
         {
             if ((_x == platfrom.X[0] || _x == platfrom.X[1] || _x == platfrom.X[2]) && _y == platfrom.Y)
@@ -52,6 +52,7 @@ namespace DeflectTheBall
             else
                 return false;
         }
+
         private bool CollisionBlock(List<Block> blocks)
         {
             foreach (Block block in blocks)
@@ -61,12 +62,10 @@ namespace DeflectTheBall
                     block.Destroy();
                     blocks.Remove(block);
                     ScoreCounter++;
-                    //Console.Beep();
                     return true;
                 }
             }
-            return false;
-            
+            return false; 
         }
 
         public void Draw()

@@ -17,7 +17,9 @@ namespace DeflectTheBall
                 "\n\n\tMenu:" +
                 "\n\t1) Play" +
                 "\n\t2) Scores" +
-                "\n\t3) Exit\n\n");
+                "\n\t3) Help" +
+                "\n\t4) Settings" +
+                "\n\t5) Exit\n\n");
             CreateScreen();
         }
 
@@ -29,7 +31,6 @@ namespace DeflectTheBall
         public static void ScoresScreen()
         {
             Console.Clear();
-            //CreateScreen();
             Console.SetCursorPosition(Width / 2 - 6, 2);
 
             do
@@ -40,11 +41,42 @@ namespace DeflectTheBall
                 "\n\n\tTo exit press Escape");
                 CreateScreen();
             }
+            while (Console.ReadKey().Key.ToString() != "Escape");         
+        }
+        public static void HelpScreen()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(Width / 2 - 6, 2);
+
+            do
+            {
+                Console.Write("HELP" +
+                "\n\tUse Left Arrow and Right Arrow" +
+                "\n\tbuttonsto control the position " +
+                "\n\tof the platform" +
+                "\n\n\tTo exit press Escape");
+                CreateScreen();
+            }
             while (Console.ReadKey().Key.ToString() != "Escape");
-            
-                    
         }
 
+        public static void SettingsScreen()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(Width / 2 - 6, 2);
+
+            do
+            {
+                Console.Write("HELP" +
+                "\n\tTo choose difficulty, press" +
+                "\n\tkey 1 - easy level" +
+                "\n\tkey 2 - medium level" +
+                "\n\tkey 3 - hard level" +
+                "\n\n\tTo exit press Escape");
+                CreateScreen();
+            }
+            while (Console.ReadKey().Key.ToString() != "Escape");
+        }
         public static void GameOverScreen()
         {
             string msg = "Game Over";
@@ -52,6 +84,16 @@ namespace DeflectTheBall
             Console.SetCursorPosition((Width - msg.Length) / 2, Height / 2);
             Console.WriteLine(msg);  
         }
+
+        public static void WinnerScreen()
+        {
+            string msg = "You Win!";
+            Console.Clear();
+            Console.SetCursorPosition((Width - msg.Length) / 2, Height / 2);
+            Console.WriteLine(msg);
+        }
+
+        
 
         private static void CreateScreen()
         {

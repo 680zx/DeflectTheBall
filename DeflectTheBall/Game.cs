@@ -7,24 +7,22 @@ namespace DeflectTheBall
 {
     class Game
     {
-        private int SpeedDif = 3; // than value is smaller - ball is faster
+        private int SpeedDif = 2; // the smaller the value - the ball is faster
         private int MovesCounter = 0;
-
-        //ConsoleKeyInfo UserChoice;
 
         Ball ball;
         Platform platform;
         List<Block> blocks;
+
         public Game()
         {
-            //Window.ScreenWidth = 41;
-            //Window.ScreenHeight = 40;
+            Console.Clear();
+            Window.GameplayScreen();
+
+            Ball.ScoreCounter = 0;
+
             platform = new Platform();
             ball = new Ball(1, 1);
-            Console.Clear();
-            //Window.Create();
-            Ball.ScoreCounter = 0;
-            Window.GameplayScreen();
             blocks = new List<Block>()
             {
                 new Block(Window.Width / 2 - 1, 4),
@@ -46,8 +44,6 @@ namespace DeflectTheBall
                 new Block(Window.Width / 2 - 1, 8),
                 new Block(Window.Width / 2 + 3, 8),
                 new Block(Window.Width / 2 + 7, 8),
-
-
             };
         }
 
@@ -63,7 +59,6 @@ namespace DeflectTheBall
 
                     ball.Move(platform, blocks);
                     platform.Move();
-                    //platform.MoveLeftRight();
                     ball.Draw();
                     platform.Draw();
                     Thread.Sleep(10);
@@ -74,7 +69,6 @@ namespace DeflectTheBall
                 else
                 {
                     platform.Move();
-                    //platform.MoveLeftRight();
                     ball.Draw();
                     platform.Draw();
                     Thread.Sleep(10);
@@ -85,9 +79,13 @@ namespace DeflectTheBall
                 Console.SetCursorPosition(3, 2);
                 Console.Write(Ball.ScoreCounter);
             }
-            //Window.GameOverScreen();
             Thread.Sleep(1000);
 
+        }
+
+        public static int GetDifficultyLevel()
+        {
+            return 1;
         }
 
         private bool isOver()
@@ -95,11 +93,14 @@ namespace DeflectTheBall
             if (ball.Y == Window.Height - 2)
             {
                 Window.GameOverScreen();
-                //Console.ReadKey();
                 return true;
             }              
-            else
-                return false;
+            else if (Ball.ScoreCounter == 15)
+            {
+                Window.WinnerScreen();
+                return true;
+            }
+            return false;
         }
     }
 }

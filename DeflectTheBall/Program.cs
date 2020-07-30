@@ -9,6 +9,7 @@ namespace DeflectTheBall
 
         static void Main(string[] args)
         {
+            //Console.SetWindowPosition(10, 20);
             Console.CursorVisible = false;
             //game.Run();
             Window.Height = 30;
@@ -34,9 +35,17 @@ namespace DeflectTheBall
                         break;
 
                     case "D3":
-                        isContinue = false;
+                        Window.HelpScreen();
                         break;
 
+                    case "D4":
+                        Window.SettingsScreen();
+                        break;
+                    
+                    case "D5":
+                        isContinue = false;
+                        break;
+                    
                     default:
                         break;
                 }

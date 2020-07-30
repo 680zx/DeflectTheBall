@@ -6,9 +6,7 @@ namespace DeflectTheBall
 {
     class Block
     {
-        private int Length;
-
-        //Block's x coordinate specifies the loeftmost corner; 
+        //Block's x coordinate specifies the leftmost corner; 
         //y coordinate means the height at which block will be
         //located; there are one-dimensional blocks only.
         private int[] _x = new int[3]; 
