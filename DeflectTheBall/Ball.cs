@@ -12,7 +12,7 @@ namespace DeflectTheBall
         private int _x, _y;
         private int _vx, _vy;
 
-        public static int ScoreCounter;
+        
 
         public int Y
         {
@@ -61,7 +61,7 @@ namespace DeflectTheBall
                 {
                     block.Destroy();
                     blocks.Remove(block);
-                    ScoreCounter++;
+                    Game.ScoreCounter += Game.ScoreMultiplier;
                     return true;
                 }
             }

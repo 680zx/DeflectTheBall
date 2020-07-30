@@ -67,9 +67,9 @@ namespace DeflectTheBall
 
             Console.Write("SETTINGS" +
             "\n\tTo choose difficulty, press" +
-            "\n\tkey 1 - easy level" +
-            "\n\tkey 2 - medium level" +
-            "\n\tkey 3 - hard level");
+            "\n\tkey 1 - easy level - x1 bonus" +
+            "\n\tkey 2 - medium level - x2 bonus" +
+            "\n\tkey 3 - insane level - x3 bonus");
             CreateScreen();
            
         }

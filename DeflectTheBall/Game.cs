@@ -8,7 +8,10 @@ namespace DeflectTheBall
     class Game
     {
         private static int SpeedDif = 3; // the smaller the value - the ball is faster
+        public static int ScoreMultiplier = 1;
+        public static int ScoreCounter = 0;
         private int MovesCounter = 0;
+        
 
         Ball ball;
         Platform platform;
@@ -19,7 +22,7 @@ namespace DeflectTheBall
             Console.Clear();
             Window.GameplayScreen();
 
-            Ball.ScoreCounter = 0;
+            ScoreCounter = 0;
 
             platform = new Platform();
             ball = new Ball(1, 1);
@@ -51,9 +54,10 @@ namespace DeflectTheBall
         {       
             while (!isOver())
             {
+
                 //MovesCounter is used to slow down the movement
                 //of the ball in relation to the movement of the platform
-                if (MovesCounter == Game.SpeedDif)
+                if (MovesCounter == SpeedDif)
                 {
 
                     ball.Move(platform, blocks);
@@ -76,7 +80,7 @@ namespace DeflectTheBall
                     MovesCounter++;
                 }
                 Console.SetCursorPosition(3, 2);
-                Console.Write(Ball.ScoreCounter);
+                Console.Write(ScoreCounter);
             }
             Thread.Sleep(1000);
         }
@@ -87,12 +91,15 @@ namespace DeflectTheBall
             {
                 case "D1":
                     SpeedDif = 5;
+                    ScoreMultiplier = 1;
                     break;
                 case "D2":
                     SpeedDif = 3;
+                    ScoreMultiplier = 2;
                     break;
                 case "D3":
                     SpeedDif = 1;
+                    ScoreMultiplier = 3;
                     break;
                 default:
                     break;
@@ -106,7 +113,7 @@ namespace DeflectTheBall
                 Window.GameOverScreen();
                 return true;
             }              
-            else if (Ball.ScoreCounter == 15)
+            else if (ScoreCounter == (15 * ScoreMultiplier))
             {
                 Window.WinnerScreen();
                 return true;
