@@ -11,8 +11,8 @@ namespace DeflectTheBall
         {
             Console.CursorVisible = false;
             //game.Run();
-            Window.ScreenHeight = 20;
-            Window.ScreenWidth = 41;
+            Window.Height = 30;
+            Window.Width = 49;
             
             bool isContinue = true;
 

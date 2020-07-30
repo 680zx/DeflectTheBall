@@ -7,12 +7,12 @@ namespace DeflectTheBall
 {
     static class Window
     {
-        public static int ScreenWidth, ScreenHeight;
+        public static int Width, Height;
 
         public static void GameMenu()
         {
             Console.Clear();
-            Console.SetCursorPosition(ScreenWidth / 2 - 4, 2);
+            Console.SetCursorPosition(Width / 2 - 4, 2);
             Console.Write("REFLECT THE BALL" +
                 "\n\n\tMenu:" +
                 "\n\t1) Play" +
@@ -30,7 +30,7 @@ namespace DeflectTheBall
         {
             Console.Clear();
             //CreateScreen();
-            Console.SetCursorPosition(ScreenWidth / 2 - 4, 2);
+            Console.SetCursorPosition(Width / 2 - 6, 2);
 
             do
             {
@@ -49,25 +49,24 @@ namespace DeflectTheBall
         {
             string msg = "Game Over";
             Console.Clear();
-            Console.SetCursorPosition((ScreenWidth - msg.Length) / 2, ScreenHeight / 2);
-            Console.WriteLine(msg);
-            
+            Console.SetCursorPosition((Width - msg.Length) / 2, Height / 2);
+            Console.WriteLine(msg);  
         }
 
         private static void CreateScreen()
         {
-            Console.WindowHeight = ScreenHeight + 2;
-            Console.WindowWidth = ScreenWidth + 2;
+            Console.WindowHeight = Height;
+            Console.WindowWidth = Width;
             CreateFrame();
         }
 
         private static void CreateFrame()
         {
-            for (int i = 0; i <= ScreenWidth + 1; i++)
+            for (int i = 0; i < Width; i++)
             {
-                for (int j = 0; j <= ScreenHeight + 1; j++)
+                for (int j = 0; j < Height; j++)
                 {
-                    if (i == 0 || j == 0 || i == ScreenWidth + 1 || j == ScreenHeight + 1)
+                    if (i == 0 || j == 0 || i == Width - 1 || j == Height - 1)
                     {
                         Console.SetCursorPosition(i, j);
                         Console.Write("o");

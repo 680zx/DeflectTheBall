@@ -15,10 +15,10 @@ namespace DeflectTheBall
 
         public Platform()
         {
-            _y = (Window.ScreenHeight) - 2;
-            _x[0] = Window.ScreenWidth / 2 - 1;
-            _x[1] = Window.ScreenWidth / 2;
-            _x[2] = Window.ScreenWidth / 2 + 1;
+            _y = (Window.Height) - 4;
+            _x[0] = Window.Width / 2 - 1;
+            _x[1] = Window.Width / 2;
+            _x[2] = Window.Width / 2 + 1;
         }
 
         public void Draw()
@@ -46,7 +46,7 @@ namespace DeflectTheBall
             _x[2] += platformVelocity;
 
             if (_x[0] - 1 == 0) { platformVelocity = -platformVelocity; }
-            if (_x[2] + 2 == Window.ScreenWidth + 1) { platformVelocity = -platformVelocity; }
+            if (_x[2] + 2 == Window.Width + 1) { platformVelocity = -platformVelocity; }
         }
 
         public void Move()
@@ -56,7 +56,7 @@ namespace DeflectTheBall
                 var UserInput = Console.ReadKey();
                 if (UserInput.Key.ToString() == "LeftArrow" && _x[0] - 1 != 0)
                     platformVelocity = -2;
-                else if (UserInput.Key.ToString() == "RightArrow" && _x[2] + 2 < Window.ScreenWidth + 1)
+                else if (UserInput.Key.ToString() == "RightArrow" && _x[2] + 2 != Window.Width)
                     platformVelocity = 2;
             }
             else

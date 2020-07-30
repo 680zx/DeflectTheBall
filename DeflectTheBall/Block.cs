@@ -23,19 +23,19 @@ namespace DeflectTheBall
             _x[1] = x + 1;
             _x[2] = x + 2;
             _y = y;
-           
+            Create();
         }
 
         public void Create()
         {
-            if (! isNear())
-            {
+            //if (! isNear())
+            //{
                 foreach (int xCoord in _x)
                 {
                     Console.SetCursorPosition(xCoord, _y);
                     Console.Write("-");
                 }
-            }
+            //}
         }
 
         public void Destroy()
@@ -45,6 +45,11 @@ namespace DeflectTheBall
                 Console.SetCursorPosition(xCoord, _y);
                 Console.Write(" ");
             }
+        }
+
+        public void CreateTriangle()
+        {
+             
         }
         
         private bool isNear()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace DeflectTheBall
 {
@@ -20,7 +21,7 @@ namespace DeflectTheBall
                 return _y;
             }
         }
-
+        
         public Ball(int vx, int vy)
         {
             InitializePosition();
@@ -30,38 +31,42 @@ namespace DeflectTheBall
 
         private void InitializePosition()
         {
-            _x = rand.Next(1, Window.ScreenWidth);
-            _y = rand.Next(1, 5);
+            _x = rand.Next(1, Window.Width - 2);
+            _y = rand.Next(5, 8);
         }
 
-        public void Move(int[] platX, int platY, Block block)
+        public void Move(Platform platform, List<Block> blocks)
         {
             _x += _vx;
             _y += _vy;
-            if (_x == Window.ScreenWidth || _x == 1) { _vx = -_vx; }
+            if (_x == Window.Width - 2 || _x == 1) { _vx = -_vx; }
             //if (_y == Window.ScreenHeight || _y == 1) { _vy = -_vy; }
-            if (CollisionPlatform(platX, platY) || _y == 1 || CollisionBlock(block)) { _vy = -_vy; }
+            if (CollisionPlatform(platform) || _y == 1 || CollisionBlock(blocks)) { _vy = -_vy; }
         }
-        private bool CollisionPlatform(int[] xCoord, int yCoord)
+        private bool CollisionPlatform(Platform platfrom)
         {
-            if ((_x == xCoord[0] || _x == xCoord[1] || _x == xCoord[2]) && _y == yCoord)
+            if ((_x == platfrom.X[0] || _x == platfrom.X[1] || _x == platfrom.X[2]) && _y == platfrom.Y)
             {
                 return true;
             }
             else
                 return false;
         }
-        private bool CollisionBlock(Block block)
+        private bool CollisionBlock(List<Block> blocks)
         {
-            if ((_x == block.X[0] || _x == block.X[1] || _x == block.X[2]) && _y == block.Y)
+            foreach (Block block in blocks)
             {
-                block.Destroy();
-                ScoreCounter++;
-                //Console.Beep();
-                return true;
+                if ((_x == block.X[0] || _x == block.X[1] || _x == block.X[2]) && _y == block.Y)
+                {
+                    block.Destroy();
+                    blocks.Remove(block);
+                    ScoreCounter++;
+                    //Console.Beep();
+                    return true;
+                }
             }
-            else
-                return false;
+            return false;
+            
         }
 
         public void Draw()
