@@ -12,8 +12,6 @@ namespace DeflectTheBall
         private int _x, _y;
         private int _vx, _vy;
 
-        
-
         public int Y
         {
             get

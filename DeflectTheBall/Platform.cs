@@ -26,7 +26,7 @@ namespace DeflectTheBall
             foreach (int xCoord in _x)
             {
                 Console.SetCursorPosition(xCoord, _y);
-                Console.WriteLine("-");
+                Console.WriteLine("_");
             }
         }
 

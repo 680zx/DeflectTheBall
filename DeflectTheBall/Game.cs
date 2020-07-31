@@ -7,8 +7,10 @@ namespace DeflectTheBall
 {
     class Game
     {
+        
+
         private static int SpeedDif = 3; // the smaller the value - the ball is faster
-        public static int ScoreMultiplier = 1;
+        public static int ScoreMultiplier = 2;
         public static int ScoreCounter = 0;
         private int MovesCounter = 0;
         
@@ -83,11 +85,12 @@ namespace DeflectTheBall
                 Console.Write(ScoreCounter);
             }
             Thread.Sleep(1000);
+            //if (ScoreCounter > )
         }
 
-        public static void SetDifficultyLevel(string gameLevel)
+        public static void SetDifficultyLevel()
         {
-            switch (gameLevel)
+            switch (Console.ReadKey().Key.ToString())
             {
                 case "D1":
                     SpeedDif = 5;
@@ -102,6 +105,7 @@ namespace DeflectTheBall
                     ScoreMultiplier = 3;
                     break;
                 default:
+                    SetDifficultyLevel();
                     break;
             }
         }

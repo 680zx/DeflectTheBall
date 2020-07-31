@@ -12,8 +12,11 @@ namespace DeflectTheBall
         public static void GameMenu()
         {
             Console.Clear();
-            Console.SetCursorPosition(Width / 2 - 4, 2);
-            Console.Write("REFLECT THE BALL" +
+
+            string header = "REFLECT THE BALL";
+            Console.SetCursorPosition((Width - header.Length) / 2, 2);
+
+            Console.Write(header +
                 "\n\n\tMenu:" +
                 "\n\t1) Play" +
                 "\n\t2) Scores" +
@@ -21,6 +24,7 @@ namespace DeflectTheBall
                 "\n\t4) Settings" +
                 "\n\t5) Exit\n\n");
             CreateScreen();
+            //Program.hashtable
         }
 
         public static void GameplayScreen()
@@ -31,14 +35,17 @@ namespace DeflectTheBall
         public static void ScoresScreen()
         {
             Console.Clear();
-            Console.SetCursorPosition(Width / 2 - 6, 2);
+
+            string header = "SCORES";
+            Console.SetCursorPosition((Width - header.Length) / 2, 2);
 
             do
             {
-                Console.Write("SCORES" +
-                "\n\t1) Player1\t100" +
+                Console.Write(header +
+                "\n\n\t1) Player1\t100" +
                 "\n\t2) Player2\t 89" +
-                "\n\n\tTo exit press Escape");
+                "\n\n\tPress Escape button to return" +
+                "\n\tto the main menu");
                 CreateScreen();
             }
             while (Console.ReadKey().Key.ToString() != "Escape");         
@@ -46,15 +53,18 @@ namespace DeflectTheBall
         public static void HelpScreen()
         {
             Console.Clear();
-            Console.SetCursorPosition(Width / 2 - 6, 2);
+
+            string header = "HELP";
+            Console.SetCursorPosition((Width - header.Length) / 2, 2);
 
             do
             {
-                Console.Write("HELP" +
-                "\n\tUse Left Arrow and Right Arrow" +
-                "\n\tbuttons to control the position " +
+                Console.Write(header +
+                "\n\n\tUse Left Arrow and Right Arrow" +
+                "\n\tbuttons to control the position" +
                 "\n\tof the platform" +
-                "\n\n\tTo exit press Escape");
+                "\n\n\tPress Escape button to return" +
+                "\n\tto the main menu");
                 CreateScreen();
             }
             while (Console.ReadKey().Key.ToString() != "Escape");
@@ -63,16 +73,17 @@ namespace DeflectTheBall
         public static void SettingsScreen()
         {
             Console.Clear();
-            Console.SetCursorPosition(Width / 2 - 6, 2);
 
-            Console.Write("SETTINGS" +
-            "\n\tTo choose difficulty, press" +
+            string header = "SETTINGS";
+            Console.SetCursorPosition((Width - header.Length) / 2, 2);
+
+            Console.Write(header + "\n\n\tTo choose difficulty, press" +
             "\n\tkey 1 - easy level - x1 bonus" +
             "\n\tkey 2 - medium level - x2 bonus" +
             "\n\tkey 3 - insane level - x3 bonus");
-            CreateScreen();
-           
+            CreateScreen();    
         }
+
         public static void GameOverScreen()
         {
             string msg = "Game Over";
